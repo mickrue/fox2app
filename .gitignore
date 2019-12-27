@@ -1,0 +1,16 @@
+# Ignore the files below
+
+# Ignore object files
+*.o
+
+# Ignore user IDE settings
+*.pro.user
+
+# Ignore the Makefile
+Makefile
+
+# Ignore the binary
+fox2app
+
+# Qt specific files
+.qmake.stash
