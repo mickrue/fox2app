@@ -180,7 +180,14 @@ bool CFoxScheduleParser::appendDataItemToXml(QXmlStreamWriter& xmlWriter)
         xmlWriter.writeAttribute("type","normal");
         members = columns.at(columnPosition["PERSONENKREIS"]);
         if (columns.at(columnPosition["BEMERKUNG"]).length() > 0) {
-            members.append(", Info: ").append(columns.at(columnPosition["BEMERKUNG"]));
+            // Depending on, if the members string is empty or not, we directly write the Info with comma or not:
+            if (members.length() > 0) {
+                members.append(", Info: ");
+            } else {
+                members.append("Info: ");
+            }
+            // Now we add the addtional information:
+            members.append(columns.at(columnPosition["BEMERKUNG"]));
         }
     }
     xmlWriter.writeTextElement("date",formatTime(columns.at(columnPosition["DATUM"]), columns.at(columnPosition["ZEIT"])));
